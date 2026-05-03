@@ -179,20 +179,20 @@ bool CoinRemovalWindow::solveCoinRemoval(std::vector<char> coins,
 /*static*/ std::vector<CoinRemovalWindow::TestCase> CoinRemovalWindow::buildTestCases()
 {
     return {
-        {"Test  1 – 7 coins, 4 heads (even)",            {'T','H','H','T','H','H','H'}},
-        {"Test  2 – 1 head",                             {'H'}},
-        {"Test  3 – 3 heads",                            {'H','H','H'}},
+        {"Test  1 – 7 coins, 5 heads",                   {'T','H','H','T','H','H','H'}},
+        {"Test  2 – 1 coin, 1 head",                     {'H'}},
+        {"Test  3 – 3 coins, 3 heads",                   {'H','H','H'}},
         {"Test  4 – 5 coins, 3 heads",                   {'H','T','H','T','H'}},
-        {"Test  5 – 5 heads",                            {'H','H','H','H','H'}},
+        {"Test  5 – 5 coins, 5 heads",                   {'H','H','H','H','H'}},
         {"Test  6 – 3 coins, 2 heads (even)",            {'H','T','H'}},
-        {"Test  7 – 4 heads (even)",                     {'H','H','H','H'}},
+        {"Test  7 – 4 coins, 4 heads (even)",            {'H','H','H','H'}},
         {"Test  8 – 10 coins, 5 heads",                  {'T','H','T','H','T','H','T','H','T','H'}},
         {"Test  9 – 6 coins, 2 heads (even)",            {'H','T','T','T','T','H'}},
-        {"Test 10 – 9 heads",                            {'H','H','H','H','H','H','H','H','H'}},
+        {"Test 10 – 9 coins, 9 heads",                   {'H','H','H','H','H','H','H','H','H'}},
         {"Test 11 – 5 coins, 4 heads (even)",            {'H','H','T','H','H'}},
         {"Test 12 – 6 coins, 4 heads (even)",            {'H','T','H','H','T','H'}},
         {"Test 13 – 9 coins, 3 heads",                   {'T','T','H','T','T','H','T','T','H'}},
-        {"Test 14 – 3 coins, 2 heads (even) [dup]",      {'H','T','H'}},
+        {"Test 14 – 3 coins, 2 heads (even) [alt 6]",   {'H','T','H'}},
         {"Test 15 – 3 coins, 1 head",                    {'T','H','T'}},
     };
 }
