@@ -95,9 +95,9 @@ void CoinWidget::paintEvent(QPaintEvent *)
         p.drawEllipse(rect);
     }
 
-    // Label
+    // Label – use pixel size for consistent rendering across different DPI settings
     QFont font = p.font();
-    font.setPointSize(static_cast<int>(rect.height() * 0.30));
+    font.setPixelSize(static_cast<int>(rect.height() * 0.30));
     font.setBold(true);
     p.setFont(font);
     p.setPen(labelColor);
@@ -192,7 +192,7 @@ bool CoinRemovalWindow::solveCoinRemoval(std::vector<char> coins,
         {"Test 11 – 5 coins, 4 heads (even)",            {'H','H','T','H','H'}},
         {"Test 12 – 6 coins, 4 heads (even)",            {'H','T','H','H','T','H'}},
         {"Test 13 – 9 coins, 3 heads",                   {'T','T','H','T','T','H','T','T','H'}},
-        {"Test 14 – 3 coins, 2 heads (even) [alt 6]",   {'H','T','H'}},
+        {"Test 14 – 3 coins, 2 heads (even) [same as Test 6]", {'H','T','H'}},
         {"Test 15 – 3 coins, 1 head",                    {'T','H','T'}},
     };
 }
@@ -545,9 +545,11 @@ void CoinRemovalWindow::loadTestCase(int index)
 
 void CoinRemovalWindow::refreshCoinWidgets()
 {
-    // Remove old coin widgets (leave the trailing stretch)
-    while (m_coinLayout->count() > 1)
-        delete m_coinLayout->takeAt(0)->widget();
+    // Remove old coin widgets (leave the trailing stretch); guard against null
+    while (m_coinLayout->count() > 1) {
+        QWidget *w = m_coinLayout->takeAt(0)->widget();
+        delete w;
+    }
     m_coinWidgets.clear();
 
     for (int i = 0; i < static_cast<int>(m_currentCoins.size()); ++i) {
